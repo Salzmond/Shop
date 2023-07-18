@@ -15,7 +15,7 @@ public class ReaderRepositoryImpl implements ReaderRepository {
     private Map<String, Reader> readerStorage = new HashMap<>();
 
     @PostConstruct
-    private void init() {
+    public void init() {
         readerStorage.put("User1", new Reader("Mark", "Antonov", "User1", "qwerty", 25));
         readerStorage.put("User2", new Reader("Alex", "Svengard", "User2", "asdfg", 29));
         readerStorage.put("User3", new Reader("Sven", "Oxter", "User3", "yxcvb", 15));

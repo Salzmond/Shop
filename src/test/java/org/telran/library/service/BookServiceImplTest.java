@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.telran.library.model.Author;
 import org.telran.library.model.Book;
+import org.telran.library.repository.BookRepositoryImpl;
 
 import java.util.List;
 
@@ -15,8 +16,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class BookServiceImplTest {
 
-    @Autowired
     private BookService service;
+
+    @BeforeEach
+    void init() {
+        BookRepositoryImpl bookRepository = new BookRepositoryImpl();
+        bookRepository.init();
+        service = new BookServiceImpl(bookRepository);
+    }
 
     @Test
     void getAll() {
@@ -33,7 +40,6 @@ class BookServiceImplTest {
     }
 
     @Test
-    @Disabled
     void borrowFromLibrary() {
         Book book = service.borrowFromLibrary(12346L);
         List<Book> books = service.getAll();
@@ -41,7 +47,6 @@ class BookServiceImplTest {
     }
 
     @Test
-    @Disabled
     void returnToLibrary() {
         Book book = new Book("Harry Potter", 12345L,
                 new Author("J", "Roaling"), 1995);

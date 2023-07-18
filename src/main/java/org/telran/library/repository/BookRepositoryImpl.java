@@ -13,16 +13,16 @@ import java.util.Map;
 @Repository
 public class BookRepositoryImpl implements BookRepository {
 
-    private Map<Long, Book> bookStorage= new HashMap<>();
+    private Map<Long, Book> bookStorage = new HashMap<>();
 
     @PostConstruct
-    private void init() {
+    public void init() {
         bookStorage.put(12345L, new Book("Harry Potter", 12345L,
-                new Author("J","Roaling"), 1995));
+                new Author("J", "Roaling"), 1995));
         bookStorage.put(12346L, new Book("Harry Potter II", 12346L,
-                new Author("J","Roaling"), 1996));
+                new Author("J", "Roaling"), 1996));
         bookStorage.put(12347L, new Book("Harry Potter III", 12347L,
-                new Author("J","Roaling"),1997));
+                new Author("J", "Roaling"), 1997));
     }
 
     @Override

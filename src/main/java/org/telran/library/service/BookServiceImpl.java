@@ -10,8 +10,11 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
 
-    @Autowired
     private BookRepository bookRepository;
+
+    public BookServiceImpl(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     @Override
     public List<Book> getAll() {
@@ -20,19 +23,16 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book findOne(long isbn) {
-
         return bookRepository.findOne(isbn);
     }
 
     @Override
     public Book borrowFromLibrary(long isbn) {
-
         return bookRepository.borrowFromLibrary(isbn);
     }
 
     @Override
     public boolean returnToLibrary(Book book) {
-
         return bookRepository.returnToLibrary(book);
     }
 }

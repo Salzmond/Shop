@@ -1,10 +1,12 @@
 package org.telran.library.service;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.telran.library.model.Reader;
+import org.telran.library.repository.ReaderRepositoryImpl;
 
 import java.util.List;
 
@@ -13,8 +15,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ReaderServiceImplTest {
 
-    @Autowired
     private ReaderService service;
+
+    @BeforeEach
+    void init() {
+        ReaderRepositoryImpl readerRepository = new ReaderRepositoryImpl();
+        readerRepository.init();
+        service = new ReaderServiceImpl(readerRepository);
+    }
 
     @Test
     void getAll() {
